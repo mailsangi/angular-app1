@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-mobdev',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobdev.component.css']
 })
 export class MobdevComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  products = [];
+  constructor(private productService: ProductsService) {
+    this.products = this.productService.products;
   }
 
+  ngOnInit(): void {}
 }

@@ -1,1 +1,39 @@
 <p>aboutus works!</p>
+{{ product | json }}
+<table>
+  <tbody>
+    <tr>
+      <td>
+        product name
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="product.name" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        product price
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="product.price" />
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="addProduct(product.name, product.price)">Click</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li *ngFor="let item of products">
+    <h1>
+      {{ item.name }}
+    </h1>
+    <p>
+      {{ item.price }}
+    </p>
+  </li>
+</ul>
