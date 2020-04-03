@@ -1,1 +1,63 @@
-<p>home works!</p>
+<h1>
+  Create a product
+</h1>
+<h1>
+  {{ nameOfProduct.value }}
+</h1>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        <input [formControl]="nameOfProduct" type="text" />
+      </td>
+      <td *ngIf="nameOfProduct.errors?.required">
+        This field is required.
+      </td>
+      <td *ngIf="nameOfProduct.errors?.maxlength">
+        This field should not have more than 5 characters
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Price
+      </td>
+      <td>
+        <input type="text" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email
+      </td>
+      <td>
+        <input type="text" [formControl]="email" />
+      </td>
+      <td *ngIf="email.errors?.email">
+        Please provide a valid email`
+      </td>
+      <td *ngIf="email.errors?.required && email.touched">
+        Email is required.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CC
+      </td>
+      <td>
+        <input type="text" [formControl]="creditCard" />
+      </td>
+      <td *ngIf="creditCard.errors?.creditCard">
+        This is not a valid cc
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="submitHandler()">Submit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

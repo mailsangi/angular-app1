@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from './../products.service';
 @Component({
   selector: 'app-aboutus',
   templateUrl: './aboutus.component.html',
   styleUrls: ['./aboutus.component.css']
 })
-export class AboutusComponent implements OnInit {
+export class AboutusComponent implements OnInit, OnDestroy {
   product = {
     name: '',
     price: ''
@@ -15,9 +15,12 @@ export class AboutusComponent implements OnInit {
   constructor(public productService: ProductsService) {
     // const products = localStorage.getItem('AppProducts');
     this.products = this.productService.products;
+    console.log('logging from constructor');
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    console.log('Logging from onInit');
+  }
 
   addProduct(pname, price) {
     // this.products.push(this.product);
@@ -27,5 +30,9 @@ export class AboutusComponent implements OnInit {
       price
     });
     this.products = [...this.products, { name: pname, price }];
+  }
+
+  ngOnDestroy() {
+    console.log('Logging from on destroy');
   }
 }
