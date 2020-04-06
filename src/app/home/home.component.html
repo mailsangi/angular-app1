@@ -2,21 +2,21 @@
   Create a product
 </h1>
 <h1>
-  {{ nameOfProduct.value }}
+  {{ createProduct.value | json }}
 </h1>
 <table>
-  <tbody>
+  <tbody [formGroup]="createProduct">
     <tr>
       <td>
         Name
       </td>
       <td>
-        <input [formControl]="nameOfProduct" type="text" />
+        <input formControlName="nameOfProduct" type="text" />
       </td>
-      <td *ngIf="nameOfProduct.errors?.required">
+      <td *ngIf="createProduct.controls.nameOfProduct.errors?.required">
         This field is required.
       </td>
-      <td *ngIf="nameOfProduct.errors?.maxlength">
+      <td *ngIf="createProduct.controls.nameOfProduct.errors?.maxlength">
         This field should not have more than 5 characters
       </td>
     </tr>
@@ -33,12 +33,17 @@
         Email
       </td>
       <td>
-        <input type="text" [formControl]="email" />
+        <input type="text" formControlName="email" />
       </td>
-      <td *ngIf="email.errors?.email">
+      <td *ngIf="createProduct.controls.email.errors?.email">
         Please provide a valid email`
       </td>
-      <td *ngIf="email.errors?.required && email.touched">
+      <td
+        *ngIf="
+          createProduct.controls.email.errors?.required &&
+          createProduct.controls.email.touched
+        "
+      >
         Email is required.
       </td>
     </tr>
@@ -47,16 +52,18 @@
         CC
       </td>
       <td>
-        <input type="text" [formControl]="creditCard" />
+        <input type="text" formControlName="creditCard" />
       </td>
-      <td *ngIf="creditCard.errors?.creditCard">
+      <td *ngIf="createProduct.controls.creditCard.errors?.creditCard">
         This is not a valid cc
       </td>
     </tr>
     <tr>
       <td></td>
       <td>
-        <button (click)="submitHandler()">Submit</button>
+        <button [disabled]="createProduct.invalid" (click)="submitHandler()">
+          Submit
+        </button>
       </td>
     </tr>
   </tbody>
