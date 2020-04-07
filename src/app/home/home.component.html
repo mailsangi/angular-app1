@@ -1,70 +1,95 @@
-<h1>
-  Create a product
-</h1>
-<h1>
-  {{ createProduct.value | json }}
-</h1>
 <table>
-  <tbody [formGroup]="createProduct">
+  <tbody [formGroup]="studentRegForm">
+    <ng-container formGroupName="name">
+      <tr>
+        <td>
+          First name
+        </td>
+        <td>
+          <input type="text" formControlName="first" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Middle name
+        </td>
+        <td>
+          <input type="text" formControlName="middle" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Last name
+        </td>
+        <td>
+          <input type="text" formControlName="last" />
+        </td>
+      </tr>
+    </ng-container>
+
     <tr>
       <td>
-        Name
+        Standard
       </td>
       <td>
-        <input formControlName="nameOfProduct" type="text" />
-      </td>
-      <td *ngIf="createProduct.controls.nameOfProduct.errors?.required">
-        This field is required.
-      </td>
-      <td *ngIf="createProduct.controls.nameOfProduct.errors?.maxlength">
-        This field should not have more than 5 characters
+        <input formControlName="std" type="text" />
       </td>
     </tr>
+    <ng-container formGroupName="address">
+      <tr>
+        <td>
+          Country
+        </td>
+        <td>
+          <input formControlName="country" type="text" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          State
+        </td>
+        <td>
+          <input formControlName="state" type="text" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          City
+        </td>
+        <td>
+          <input formControlName="city" type="text" />
+        </td>
+      </tr>
+    </ng-container>
     <tr>
       <td>
-        Price
+        Add Skill
       </td>
       <td>
-        <input type="text" />
+        <button (click)="addSkillFormControl()">+</button>
       </td>
     </tr>
-    <tr>
-      <td>
-        Email
-      </td>
-      <td>
-        <input type="text" formControlName="email" />
-      </td>
-      <td *ngIf="createProduct.controls.email.errors?.email">
-        Please provide a valid email`
-      </td>
-      <td
-        *ngIf="
-          createProduct.controls.email.errors?.required &&
-          createProduct.controls.email.touched
-        "
+    <ng-container formArrayName="skills">
+      <tr
+        *ngFor="let x of studentRegForm.controls.skills.controls; let i = index"
       >
-        Email is required.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        CC
-      </td>
-      <td>
-        <input type="text" formControlName="creditCard" />
-      </td>
-      <td *ngIf="createProduct.controls.creditCard.errors?.creditCard">
-        This is not a valid cc
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <button [disabled]="createProduct.invalid" (click)="submitHandler()">
-          Submit
-        </button>
-      </td>
-    </tr>
+        <td>
+          {{ i }}
+        </td>
+        <td>
+          <input type="text" [formControlName]="i" />
+        </td>
+        <td
+          *ngIf="studentRegForm.controls.skills.controls[i].errors?.minlength"
+        >
+          should not exceed the limit
+        </td>
+        <td>
+          <button (click)="removeSkillFormControlByIndex(i)">X</button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+<hr />
+{{ studentRegForm.value | json }}
