@@ -1,1 +1,12 @@
-<p>cloud works!</p>
+<ul>
+  <li *ngFor="let item of posts$ | async">
+    {{ item | json }}
+  </li>
+</ul>
+<!-- <ul>
+  <li *ngFor="let item of posts">
+    {{ item | json }}
+  </li>
+</ul> -->
+
+<h1 *ngIf="err">{{ err }}</h1>
