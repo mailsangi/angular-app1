@@ -41,7 +41,10 @@ export class HomeComponent {
     const skillFormControlEven = new FormControl('Writing', [
       Validators.minLength(3)
     ]);
-    if (this.studentRegForm.controls.skills.controls.length % 2 == 0) {
+    if (
+      (this.studentRegForm.controls.skills as FormArray).controls.length % 2 ==
+      0
+    ) {
       (this.studentRegForm.controls.skills as FormArray).push(
         skillFormControlEven
       );
@@ -53,6 +56,6 @@ export class HomeComponent {
   }
   removeSkillFormControlByIndex(index) {
     console.log(index);
-    this.studentRegForm.controls.skills.removeAt(index);
+    (this.studentRegForm.controls.skills as FormArray).removeAt(index);
   }
 }

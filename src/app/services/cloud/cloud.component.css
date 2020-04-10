@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+}
+.container ul {
+  width: 50%;
+}
