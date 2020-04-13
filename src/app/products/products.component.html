@@ -1,0 +1,36 @@
+<table>
+  <tbody [formGroup]="productCreationForm">
+    <tr>
+      <td>Name</td>
+      <td>
+        <input formControlName="name" type="text" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Price
+      </td>
+      <td>
+        <input formControlName="price" type="text" />
+      </td>
+    </tr>
+    <tr>
+      <td>Quantity</td>
+      <td>
+        <input formControlName="quantity" type="number" />
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="create()">Submit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li *ngFor="let product of products$ | async">
+    {{ product | json }}
+  </li>
+</ul>
