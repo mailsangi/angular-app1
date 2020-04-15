@@ -1,3 +1,6 @@
+<h1>
+  {{ currentProductId }}
+</h1>
 <table>
   <tbody [formGroup]="productCreationForm">
     <tr>
@@ -23,7 +26,8 @@
     <tr>
       <td></td>
       <td>
-        <button (click)="create()">Submit</button>
+        <button *ngIf="!editMode" (click)="create()">Submit</button>
+        <button *ngIf="editMode" (click)="update()">Update</button>
       </td>
     </tr>
   </tbody>
@@ -32,5 +36,11 @@
 <ul>
   <li *ngFor="let product of products$ | async">
     {{ product | json }}
+    <button (click)="edit(product)">Edit</button>
+    <button (click)="delete(product._id)">X</button>
   </li>
 </ul>
+
+<p>
+  https://www.google.com/search?sxsrf=ALeKk017jwHubCrpq-05dZkSx2J3J0fx5A%3A1586919162396&source=hp&ei=-naWXtibFrWGjLsPme-vmAE&q=webassembly+with+go&oq=&gs_lcp=CgZwc3ktYWIQARgDMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnUABYAGCLSmgDcAB4AIABAIgBAJIBAJgBAKoBB2d3cy13aXqwAQo&sclient=psy-ab
+</p>

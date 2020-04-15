@@ -7,9 +7,11 @@ import { ProductsComponent } from './products/products.component';
 import { AppRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductsService } from './products/product.service';
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProductsComponent],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ProductsService]
 })
 export class AppModule {}

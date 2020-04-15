@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ProductsService } from './product.service';
 
-const URL = 'http://localhost:9080/products';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -13,7 +11,9 @@ const URL = 'http://localhost:9080/products';
 export class ProductsComponent implements OnInit {
   productCreationForm: FormGroup;
   products$: Observable<any>;
-  constructor(private http: HttpClient) {
+  editMode = false;
+  currentProductId: string;
+  constructor(private productsService: ProductsService) {
     this.productCreationForm = new FormGroup({
       name: new FormControl(),
       price: new FormControl(),
@@ -22,19 +22,46 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products$ = this.http.get(`${URL}/all`).pipe(
-      map((res: any) => {
-        console.log('RES', res);
-        return res.result;
-      })
-    );
+    this.products$ = this.productsService.get();
   }
+
   create() {
     console.log(this.productCreationForm.value);
-    this.http
-      .post(`${URL}/create`, this.productCreationForm.value)
+    this.productsService
+      .create(this.productCreationForm.value)
       .subscribe(res => {
         console.log(res);
       });
+  }
+
+  edit(product) {
+    console.log('Product', product);
+    this.currentProductId = product._id;
+    this.editMode = true;
+    this.productCreationForm.patchValue(product);
+  }
+
+  update() {
+    this.productsService
+      .update(this.productCreationForm.value, this.currentProductId)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  delete(id) {
+    this.productsService.delete(id).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
