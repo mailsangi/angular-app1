@@ -8,10 +8,13 @@ import { AppRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from './products/product.service';
+import { UserService } from './app/user.service';
+import { ShowProducts } from './products/showproducts.guard';
+import { HomeCanActivate } from './home/home.canactivate';
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProductsComponent],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
-  providers: [ProductsService]
+  providers: [ProductsService, UserService, ShowProducts, HomeCanActivate],
 })
 export class AppModule {}

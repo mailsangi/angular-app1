@@ -6,7 +6,7 @@ import { ProductsService } from './product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
   productCreationForm: FormGroup;
@@ -14,10 +14,12 @@ export class ProductsComponent implements OnInit {
   editMode = false;
   currentProductId: string;
   constructor(private productsService: ProductsService) {
+    console.log('Logging from Products');
+
     this.productCreationForm = new FormGroup({
       name: new FormControl(),
       price: new FormControl(),
-      quantity: new FormControl()
+      quantity: new FormControl(),
     });
   }
 
@@ -29,7 +31,7 @@ export class ProductsComponent implements OnInit {
     console.log(this.productCreationForm.value);
     this.productsService
       .create(this.productCreationForm.value)
-      .subscribe(res => {
+      .subscribe((res) => {
         console.log(res);
       });
   }
@@ -45,10 +47,10 @@ export class ProductsComponent implements OnInit {
     this.productsService
       .update(this.productCreationForm.value, this.currentProductId)
       .subscribe(
-        res => {
+        (res) => {
           console.log(res);
         },
-        err => {
+        (err) => {
           console.log(err);
         }
       );
@@ -56,10 +58,10 @@ export class ProductsComponent implements OnInit {
 
   delete(id) {
     this.productsService.delete(id).subscribe(
-      res => {
+      (res) => {
         console.log(res);
       },
-      err => {
+      (err) => {
         console.log(err);
       }
     );

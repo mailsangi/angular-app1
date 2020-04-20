@@ -1,1 +1,127 @@
-<p>home works!</p>
+<!-- <h1>
+  Sign up
+</h1> -->
+<!-- Sign up-->
+<table *ngIf="!displaySignInForm">
+  <tbody [formGroup]="userRegForm">
+    <tr>
+      <td>
+        <input formControlName="name" type="text" placeholder="Name " />
+      </td>
+      <td
+        *ngIf="
+          userRegForm.controls.name.touched &&
+          userRegForm.controls.name.errors?.required
+        "
+      >
+        Name is required
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input formControlName="email" type="text" placeholder="Email " />
+      </td>
+      <td *ngIf="userRegForm.controls.email.touched">
+        <ng-container *ngIf="userRegForm.controls.email.errors?.required">
+          Email is required
+        </ng-container>
+        <ng-container *ngIf="userRegForm.controls.email.errors?.email">
+          Please provide a valid email
+        </ng-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          formControlName="password"
+          type="password"
+          placeholder="password "
+        />
+      </td>
+      <td
+        *ngIf="
+          userRegForm.controls.password.touched &&
+          userRegForm.controls.password.errors?.required
+        "
+      >
+        Password is required
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          formControlName="confirmPassword"
+          type="password"
+          placeholder="Confirm password "
+        />
+      </td>
+      <td
+        *ngIf="
+          userRegForm.controls.confirmPassword.dirty &&
+          userRegForm.controls.confirmPassword.errors?.confirmPassword
+        "
+      >
+        Passwords are not same.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button [disabled]="userRegForm.invalid" (click)="signup()">
+          Create
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td (click)="showSignInForm()">
+        Already have an account?? Please sign in
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- Sign in-->
+<table *ngIf="displaySignInForm">
+  <tbody [formGroup]="userSignInForm">
+    <tr>
+      <td>
+        <input formControlName="email" type="text" placeholder="Email " />
+      </td>
+      <td *ngIf="userSignInForm.controls.email.touched">
+        <ng-container *ngIf="userSignInForm.controls.email.errors?.required">
+          Email is required
+        </ng-container>
+        <ng-container *ngIf="userSignInForm.controls.email.errors?.email">
+          Please provide a valid email
+        </ng-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input
+          formControlName="password"
+          type="password"
+          placeholder="password "
+        />
+      </td>
+      <td
+        *ngIf="
+          userSignInForm.controls.password.touched &&
+          userSignInForm.controls.password.errors?.required
+        "
+      >
+        Password is required
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button [disabled]="userSignInForm.invalid" (click)="signin()">
+          Proceed
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td (click)="showSignUpForm()">
+        Don't have an account?? Please sign up
+      </td>
+    </tr>
+  </tbody>
+</table>
