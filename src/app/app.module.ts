@@ -6,21 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
-import { ServicesComponent } from './services/services.component';
-import { CloudComponent } from './services/cloud/cloud.component';
-import { WebdevComponent } from './services/webdev/webdev.component';
 import { MobdevComponent } from './services/mobdev/mobdev.component';
+import { SerivcesModule } from './services/services.module';
+import { ABCModule } from './abc/abc.module';
+import { XYZModule } from './xyz/xyz.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    AboutusComponent,
-    ServicesComponent,
-    CloudComponent,
-    WebdevComponent,
-    MobdevComponent
-  ],
+  declarations: [AppComponent, HomeComponent, AboutusComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -28,46 +20,43 @@ import { MobdevComponent } from './services/mobdev/mobdev.component';
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
       },
       {
         path: 'mobdev',
-        component: MobdevComponent
+        component: MobdevComponent,
       },
       {
         path: 'aboutus',
-        component: AboutusComponent
+        component: AboutusComponent,
+      },
+      {
+        path: 'abc',
+        loadChildren: () => {
+          return import('./abc/abc.module').then((chunk) => {
+            return chunk.ABCModule;
+          });
+        },
+      },
+      {
+        path: 'xyz',
+        loadChildren: () =>
+          import('./xyz/xyz.module').then((chunk) => chunk.XYZModule),
       },
       {
         path: 'services',
-        component: ServicesComponent,
-        children: [
-          {
-            path: '',
-            redirectTo: 'webdev',
-            pathMatch: 'full'
-          },
-          {
-            path: 'webdev',
-            component: WebdevComponent
-          },
-          {
-            path: 'mobdev',
-            component: MobdevComponent
-          },
-          {
-            path: 'cloud',
-            component: CloudComponent
-          }
-        ]
-      }
-    ])
+        loadChildren: () =>
+          import('./services/services.module').then(
+            (chunk) => chunk.SerivcesModule
+          ),
+      },
+    ]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
