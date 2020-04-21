@@ -11,10 +11,17 @@ import { ProductsService } from './products/product.service';
 import { UserService } from './app/user.service';
 import { ShowProducts } from './products/showproducts.guard';
 import { HomeCanActivate } from './home/home.canactivate';
+import { ProductsCanDeActivate } from './products/products.candeactivate';
 @NgModule({
   declarations: [AppComponent, HomeComponent, ProductsComponent],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
-  providers: [ProductsService, UserService, ShowProducts, HomeCanActivate],
+  providers: [
+    ProductsService,
+    UserService,
+    ShowProducts,
+    HomeCanActivate,
+    ProductsCanDeActivate,
+  ],
 })
 export class AppModule {}

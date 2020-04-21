@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShowProducts } from './products/showproducts.guard';
 import { HomeCanActivate } from './home/home.canactivate';
+import { ProductsCanDeActivate } from './products/products.candeactivate';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { HomeCanActivate } from './home/home.canactivate';
       {
         path: 'products',
         canActivate: [ShowProducts],
+        canDeactivate: [ProductsCanDeActivate],
         component: ProductsComponent,
       },
     ]),
