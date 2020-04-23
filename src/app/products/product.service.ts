@@ -16,6 +16,15 @@ export class ProductsService {
       })
     );
   }
+
+  getById(id) {
+    return this.http.get(`${URL}/${id}`).pipe(
+      map((res: any) => {
+        console.log('RES', res);
+        return res.result;
+      })
+    );
+  }
   create(product) {
     console.log(product);
     return this.http.post(`${URL}/create`, product);

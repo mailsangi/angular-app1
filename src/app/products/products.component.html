@@ -35,7 +35,16 @@
 
 <ul>
   <li *ngFor="let product of products$ | async">
-    {{ product | json }}
+    {{ product.name }}
+    <a
+      [routerLink]="['/product/', product._id, product.price]"
+      [queryParams]="{
+        country: 'JAPAN',
+        quanlity: 5,
+        yom: 2019
+      }"
+      >View more</a
+    >
     <button (click)="edit(product)">Edit</button>
     <button (click)="delete(product._id)">X</button>
   </li>

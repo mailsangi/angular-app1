@@ -12,8 +12,9 @@ import { UserService } from './app/user.service';
 import { ShowProducts } from './products/showproducts.guard';
 import { HomeCanActivate } from './home/home.canactivate';
 import { ProductsCanDeActivate } from './products/products.candeactivate';
+import { ProductComponent } from './product/product.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProductsComponent],
+  declarations: [AppComponent, HomeComponent, ProductsComponent, ProductComponent],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
   providers: [
