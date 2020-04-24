@@ -17,6 +17,8 @@ export class ProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductsService
   ) {
+    console.log('product constructor');
+
     // this.data = this.activatedRoute.snapshot.params;
     // this.activatedRoute.params.subscribe((params) => {
     //   console.log('params', params);
@@ -24,21 +26,28 @@ export class ProductComponent implements OnInit {
     //     .getById(params.id)
     //     .subscribe((details) => console.log('Details', details));
     // });
-    this.product$ = this.activatedRoute.params.pipe(
-      switchMap((params) => {
-        return this.productService.getById(params.id);
-      })
-    );
+    // this.product$ = this.activatedRoute.params.pipe(
+    //   switchMap((params) => {
+    //     return this.productService.getById(params.id);
+    //   })
+    // );
     this.queryParams$ = this.activatedRoute.queryParams;
-    forkJoin([this.product$, this.queryParams$]).subscribe(
+    zip(this.queryParams$, this.activatedRoute.data).subscribe(
       (data) => {
         console.log('data', data);
+        this.data = data[1].myproduct;
       },
       (err) => {
         console.log('err', err);
       }
     );
+
+    // this.activatedRoute.data.subscribe((data) =>
+    //   console.log('resolved data', data.myproduct)
+    // );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('Resolver oninit');
+  }
 }

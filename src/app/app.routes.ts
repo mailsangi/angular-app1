@@ -6,6 +6,7 @@ import { ShowProducts } from './products/showproducts.guard';
 import { HomeCanActivate } from './home/home.canactivate';
 import { ProductsCanDeActivate } from './products/products.candeactivate';
 import { ProductComponent } from './product/product.component';
+import { ProductResolver } from './product/product.resolver';
 
 @NgModule({
   imports: [
@@ -28,6 +29,12 @@ import { ProductComponent } from './product/product.component';
       },
       {
         path: 'product/:id/:price',
+        resolve: {
+          myproduct: ProductResolver,
+        },
+        data: {
+          secretKey: '798t7e89t7e9t79e',
+        },
         component: ProductComponent,
       },
     ]),

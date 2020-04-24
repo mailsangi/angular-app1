@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 const confirmPasswordValidator = (formControl: FormControl) => {
   if (formControl && formControl.parent) {
     console.log('FC', formControl.parent.controls);
-    const password = formControl.parent.controls.password.value;
+    const password = formControl.parent.get('password').value;
     console.log('Password', password, 'Confirm Password', formControl.value);
     if (password === formControl.value) {
       return null;

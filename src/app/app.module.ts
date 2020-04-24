@@ -13,8 +13,14 @@ import { ShowProducts } from './products/showproducts.guard';
 import { HomeCanActivate } from './home/home.canactivate';
 import { ProductsCanDeActivate } from './products/products.candeactivate';
 import { ProductComponent } from './product/product.component';
+import { ProductResolver } from './product/product.resolver';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProductsComponent, ProductComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ProductsComponent,
+    ProductComponent,
+  ],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
   providers: [
@@ -23,6 +29,7 @@ import { ProductComponent } from './product/product.component';
     ShowProducts,
     HomeCanActivate,
     ProductsCanDeActivate,
+    ProductResolver,
   ],
 })
 export class AppModule {}
