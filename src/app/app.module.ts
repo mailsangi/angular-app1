@@ -15,6 +15,8 @@ import { ProductsCanDeActivate } from './products/products.candeactivate';
 import { ProductComponent } from './product/product.component';
 import { ProductResolver } from './product/product.resolver';
 import { MyPipe } from './utils/mypipe.pipe';
+import { CategoryComponent } from './category/category.component';
+import { CategoryService } from './category/category.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { MyPipe } from './utils/mypipe.pipe';
     ProductsComponent,
     ProductComponent,
     MyPipe,
+    CategoryComponent,
   ],
   imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent],
@@ -32,6 +35,7 @@ import { MyPipe } from './utils/mypipe.pipe';
     HomeCanActivate,
     ProductsCanDeActivate,
     ProductResolver,
+    CategoryService,
   ],
 })
 export class AppModule {}

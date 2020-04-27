@@ -1,0 +1,51 @@
+<table>
+  <tbody [formGroup]="categoryForm">
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        <input formControlName="name" type="text" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Type
+      </td>
+      <td>
+        <input formControlName="type" value="0" type="radio" />
+        Primary
+      </td>
+      <td>
+        <input formControlName="type" value="1" type="radio" />
+        Sub
+      </td>
+    </tr>
+    <tr *ngIf="categoryForm.controls.type.value == 1">
+      <td>
+        Choose Parent Category
+      </td>
+      <td>
+        <select formControlName="parent" name="" id="">
+          <option
+            [value]="category._id"
+            *ngFor="let category of parentCatgories$ | async"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="create()">Create</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<h1>
+  {{ categoryForm.value | json }}
+</h1>

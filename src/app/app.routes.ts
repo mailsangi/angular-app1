@@ -7,6 +7,7 @@ import { HomeCanActivate } from './home/home.canactivate';
 import { ProductsCanDeActivate } from './products/products.candeactivate';
 import { ProductComponent } from './product/product.component';
 import { ProductResolver } from './product/product.resolver';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,14 @@ import { ProductResolver } from './product/product.resolver';
         path: '',
         canActivate: [HomeCanActivate],
         component: HomeComponent,
+      },
+      {
+        path: 'shop',
+        loadChildren: () =>
+          import('./shop/shop.module').then((chunk) => {
+            console.log('Chunk', chunk);
+            return chunk.ShopModule;
+          }),
       },
       {
         path: 'home',
@@ -26,6 +35,11 @@ import { ProductResolver } from './product/product.resolver';
         canActivate: [ShowProducts],
         // canDeactivate: [ProductsCanDeActivate],
         component: ProductsComponent,
+      },
+      {
+        path: 'category',
+        // canDeactivate: [ProductsCanDeActivate],
+        component: CategoryComponent,
       },
       {
         path: 'product/:id/:price',
