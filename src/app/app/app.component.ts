@@ -7,7 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
+  showMainMenu = true;
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      console.log('Router events', this.router.url);
+      if (this.router.url.includes('shop')) {
+        this.showMainMenu = false;
+      } else {
+        this.showMainMenu = true;
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

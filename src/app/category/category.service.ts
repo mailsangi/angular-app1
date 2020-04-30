@@ -31,4 +31,9 @@ export class CategoryService {
       })
     );
   }
+
+  getAllSubCategories(id) {
+    console.log('ID', id);
+    return this.http.get(`${URL}/${id}`);
+  }
 }

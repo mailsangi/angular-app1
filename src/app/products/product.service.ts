@@ -40,4 +40,21 @@ export class ProductsService {
   delete(id) {
     return this.http.delete(`${URL}/remove/${id}`);
   }
+
+  getParentCategoryItems(id) {
+    return this.http.get(`${URL}/parent/${id}`).pipe(
+      map((res: any) => {
+        console.log('RES', res);
+        return res.result;
+      })
+    );
+  }
+  getSubCategoryItems(id) {
+    return this.http.get(`${URL}/subcategory/${id}`).pipe(
+      map((res: any) => {
+        console.log('RES', res);
+        return res.result;
+      })
+    );
+  }
 }

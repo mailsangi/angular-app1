@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { AppRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProductsService } from './products/product.service';
 import { UserService } from './app/user.service';
 import { ShowProducts } from './products/showproducts.guard';
@@ -17,6 +17,8 @@ import { ProductResolver } from './product/product.resolver';
 import { MyPipe } from './utils/mypipe.pipe';
 import { CategoryComponent } from './category/category.component';
 import { CategoryService } from './category/category.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilterProductsPipe } from './app/filterproducts.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +27,16 @@ import { CategoryService } from './category/category.service';
     ProductComponent,
     MyPipe,
     CategoryComponent,
+    FilterProductsPipe,
   ],
-  imports: [BrowserModule, AppRoutes, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutes,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+  ],
   bootstrap: [AppComponent],
   providers: [
     ProductsService,

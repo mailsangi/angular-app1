@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="showMainMenu">
   <li routerLink="">Home</li>
   <li routerLink="/products">Products</li>
   <li routerLink="/category">Category</li>
@@ -6,4 +6,3 @@
   <li (click)="logout()">Logout</li>
 </ul>
 <router-outlet></router-outlet>
-<hr />

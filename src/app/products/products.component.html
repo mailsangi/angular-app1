@@ -24,6 +24,29 @@
       </td>
     </tr>
     <tr>
+      <td>Choose Parent Category</td>
+      <td>
+        <select formControlName="category">
+          <option [value]="item._id" *ngFor="let item of categories$ | async">
+            {{ item.name }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr *ngIf="productCreationForm.controls.category.value">
+      <td>Choose Sub Category</td>
+      <td>
+        <select formControlName="subCategory">
+          <option
+            [value]="item._id"
+            *ngFor="let item of (subCategories$ | async)?.result"
+          >
+            {{ item.name }}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
       <td></td>
       <td>
         <button *ngIf="!editMode" (click)="create()">Submit</button>
@@ -33,8 +56,48 @@
   </tbody>
 </table>
 
+<table>
+  <tbody [formGroup]="filterProductsForm">
+    <tr>
+      <td>
+        Filter by
+      </td>
+      <td>
+        <select formControlName="mainCategory" name="" id="">
+          <option [value]="item._id" *ngFor="let item of categories$ | async">
+            {{ item.name }}
+          </option>
+        </select>
+      </td>
+      <td>
+        and
+      </td>
+      <select
+        *ngIf="filterProductsForm.controls.mainCategory.value"
+        formControlName="subCategory"
+        name=""
+        id=""
+      >
+        <option
+          [value]="item._id"
+          *ngFor="let item of (subCategories$ | async)?.result"
+        >
+          {{ item.name }}
+        </option>
+      </select>
+    </tr>
+  </tbody>
+</table>
 <ul>
-  <li *ngFor="let product of products$ | async">
+  <li
+    *ngFor="
+      let product of products$
+        | async
+        | filterProducts
+          : filterProductsForm.controls.mainCategory.value
+          : filterProductsForm.controls.subCategory.value
+    "
+  >
     {{ product.name }}
     <a
       [routerLink]="['/product/', product._id, product.price]"
@@ -50,6 +113,4 @@
   </li>
 </ul>
 
-<p>
-  https://www.google.com/search?sxsrf=ALeKk017jwHubCrpq-05dZkSx2J3J0fx5A%3A1586919162396&source=hp&ei=-naWXtibFrWGjLsPme-vmAE&q=webassembly+with+go&oq=&gs_lcp=CgZwc3ktYWIQARgDMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnMgcIIxDqAhAnUABYAGCLSmgDcAB4AIABAIgBAJIBAJgBAKoBB2d3cy13aXqwAQo&sclient=psy-ab
-</p>
+{{ productCreationForm.value | json }}

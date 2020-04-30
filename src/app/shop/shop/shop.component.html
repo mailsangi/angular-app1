@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let item of parentCatgories$ | async">
-    {{ item.name }}
-  </li>
-</ul>
+<mat-toolbar [color]="'accent'">
+  <mat-toolbar-row>
+    <h1>
+      ESHOP
+    </h1>
+    <ul>
+      <li *ngFor="let item of parentCatgories$ | async">
+        <button [routerLink]="[item._id]" mat-button>
+          {{ item.name }}
+        </button>
+      </li>
+      <li>
+        <button mat-raised-button color="primary">
+          Cart {{ products.length }}
+        </button>
+      </li>
+    </ul>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

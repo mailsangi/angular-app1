@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-card *ngFor="let item of products$ | async">
+    <mat-card-title>
+      {{ item.name }}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ item._id }}
+    </mat-card-subtitle>
+    <mat-card-content>
+      <p>Price: {{ item.price }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="addToCart(item)" mat-raised-button color="primary">
+        Add to cart
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
