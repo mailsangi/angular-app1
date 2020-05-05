@@ -11,6 +11,11 @@ import { CartService } from '../cart.service';
 })
 export class AllComponent implements OnInit {
   products$;
+  product = {
+    name: 'Light',
+    price: 10,
+    _id: '9090909090',
+  };
   constructor(
     private activatedR: ActivatedRoute,
     private router: Router,

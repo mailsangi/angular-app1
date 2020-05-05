@@ -9,9 +9,17 @@ import { MatCardModule } from '@angular/material/card';
 import { CategoryComponent } from './category/category.component';
 import { AllComponent } from './all/all.component';
 import { CartService } from './cart.service';
+import { ProductWidgetComponent } from './product-widget/product-widget.component';
+import { AddToCartDirective } from './addToCart.directive';
 
 @NgModule({
-  declarations: [ShopComponent, CategoryComponent, AllComponent],
+  declarations: [
+    ShopComponent,
+    AddToCartDirective,
+    CategoryComponent,
+    AllComponent,
+    ProductWidgetComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
