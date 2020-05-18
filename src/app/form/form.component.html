@@ -1,0 +1,14 @@
+<table>
+  <tbody [formGroup]="data">
+    <tr *ngFor="let item of fields">
+      <td>
+        <input [formControlName]="item" [placeholder]="item" type="text" />
+      </td>
+    </tr>
+    <tr>
+      <button (click)="submitData()">
+        {{ !editMode ? "Create " : "Update" }}
+      </button>
+    </tr>
+  </tbody>
+</table>

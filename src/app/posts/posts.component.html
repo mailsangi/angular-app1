@@ -1,0 +1,15 @@
+<app-form
+  (onSubmit)="submit($event)"
+  (onUpdate)="update($event)"
+  [fields]="['title', 'description']"
+  [editMode]="editMode"
+  [post]="post"
+></app-form>
+
+<ul>
+  <li *ngFor="let post of posts$ | async; let i = index">
+    {{ i }} {{ post | json }}
+    <button (click)="delete(i)">x</button>
+    <button (click)="edit(i, post)">Edit</button>
+  </li>
+</ul>

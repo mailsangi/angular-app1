@@ -1,0 +1,14 @@
+<nav>
+  <ul>
+    <li [routerLink]="['']" routerLinkActive="router-link-active">Home</li>
+    <li [routerLink]="['/posts']" routerLinkActive="router-link-active">
+      Posts
+    </li>
+    <li [routerLink]="['/articles']" routerLinkActive="router-link-active">
+      Articles
+    </li>
+  </ul>
+</nav>
+
+<hr />
+<router-outlet></router-outlet>
