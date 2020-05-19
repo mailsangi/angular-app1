@@ -1,1 +1,9 @@
-<p>home works!</p>
+<button (click)="postData()">PosT</button>
+
+<ul>
+  <li *ngFor="let item of news$ | async; let i = index">
+    <h1>{{ item.title }} --- {{ item.id }}</h1>
+    <p>{{ item.body }}</p>
+    <button (click)="delete(item.id)">X</button>
+  </li>
+</ul>

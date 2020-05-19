@@ -1,1 +1,14 @@
-<p>articles works!</p>
+<app-form
+  (onSubmit)="submit($event)"
+  (onUpdate)="update($event)"
+  [fields]="['title', 'description']"
+  [editMode]="editMode"
+  [post]="article"
+></app-form>
+
+<ul>
+  <li *ngFor="let post of articles$ | async; let i = index">
+    {{ i }} {{ post | json }}
+    <button (click)="edit(i, post)">Edit</button>
+  </li>
+</ul>
